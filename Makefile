@@ -1,7 +1,7 @@
 VERSION?=$(shell cat VERSION | tr -d " \t\n\r")
 # Image URL to use all building/pushing image targets
 FB_IMG ?= kubesphere/fluent-bit:v1.8.3
-OP_IMG ?= kubesphere/fluentbit-operator:$(VERSION)
+OP_IMG ?= dbojan/fluentbit-operator:dd.0
 AMD64 ?= -amd64
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS ?= "crd:trivialVersions=true"
@@ -69,6 +69,9 @@ build-fb:
 # Build amd64/arm64 Fluent Bit Operator container image
 build-op: test
 	docker buildx build --push --platform linux/amd64,linux/arm64 -f cmd/manager/Dockerfile . -t ${OP_IMG}
+
+build-custom:
+	docker build --push --platform linux/amd64 -f cmd/manager/Dockerfile . -t ${OP_IMG}
 
 # Build all amd64 docker images
 build-amd64: build-op-amd64
