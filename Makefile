@@ -70,9 +70,6 @@ build-fb:
 build-op: test
 	docker buildx build --push --platform linux/amd64,linux/arm64 -f cmd/manager/Dockerfile . -t ${OP_IMG}
 
-build-custom:
-	docker build --push --platform linux/amd64 -f cmd/manager/Dockerfile . -t ${OP_IMG}
-
 # Build all amd64 docker images
 build-amd64: build-op-amd64
 
