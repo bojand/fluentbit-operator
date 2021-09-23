@@ -3000,6 +3000,9 @@ spec:
                     - volumePath
                     type: object
                 type: object
+              priorityClassName:
+                description: PriorityClassName represents the pod's priority class.
+                type: string
               resources:
                 description: Compute Resources required by container.
                 properties:
@@ -4361,6 +4364,12 @@ spec:
               "null":
                 description: Null defines Null Output configuration.
                 type: object
+              retry_limit:
+                description: RetryLimit represents configuration for the scheduler
+                  which can be set independently on each output section. This option
+                  allows to disable retries or impose a limit to try N times and then
+                  discard the data after reaching that limit.
+                type: string
               stdout:
                 description: Stdout defines Stdout Output configuration.
                 properties:
